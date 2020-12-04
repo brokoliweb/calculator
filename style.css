@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    
+}
+
+#container {
+    
+    width: 72vw;
+    
+    margin: auto;
+    
+    
+}
+
+#total-container {
+    width: 72vw;
+    
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-content: end;
+    
+    border: 10px solid black;
+}
+
+.total, .total-ongoing {
+    margin-right: 1em;
+}
+
+
+
+#numbers-container {
+    
+    max-width: 72vw;
+    
+    border: 10px solid black;
+    
+    
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1em;
+}
+
+.numbers {
+    line-height: 8vh;
+    font-size: 1.5em;
+    border: 1px solid blue;
+    text-align: center;
+    background: red;
+    color: white;
+}
+
+.numbers:hover {
+    cursor: pointer;
+}
+
