@@ -31,7 +31,9 @@ function numberClicked(e) {
 
   let array = str.split(/[%\*\+\/\u02C6]/);
   console.log(array);
-  if (array.length === 3) {
+  console.log(str.length);
+  console.log(array.includes("-"));
+  if (array.length === 3 || (array.includes("-") && str.length > 4)) {
     totalOngoing.textContent = "Error";
     return;
   }
@@ -86,8 +88,14 @@ function subtraction() {
     sum -= parseFloat(array[i]);
     console.log(sum);
     console.log(array[0]);
-    sum = Math.round(sum * 1000) / 1000;
-    total.textContent = sum + array[0] * 2;
+
+    if (array[0] === "") {
+      total.textContent =  - array[1] - array[2];
+    }  else {
+      sum = Math.round(sum * 1000) / 1000;
+      total.textContent = sum + array[0] * 2;
+    }
+    
   }
   totalOngoing.textContent = total.textContent;
 }
