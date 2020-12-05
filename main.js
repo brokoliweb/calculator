@@ -7,7 +7,7 @@ const operator = document.querySelectorAll(".operator");
 
 const equal = document.getElementById("equal");
 const clearAll = document.getElementById("clear-all");
-
+const remainder = document.querySelector(".remainder");
 const backspace = document.getElementById("backspace");
 
 number.forEach((element) => {
@@ -21,6 +21,7 @@ equal.addEventListener("click", compute);
 clearAll.addEventListener("click", deleteAll);
 exponent.addEventListener("click", numberClicked);
 backspace.addEventListener("click", deleteLast);
+remainder.addEventListener("click", numberClicked);
 
 function numberClicked(e) {
   console.log(e);
@@ -28,7 +29,7 @@ function numberClicked(e) {
   totalOngoing.textContent += num;
   let str = totalOngoing.textContent;
 
-  let array = str.split(/[\*\+\x2D\/\u02C6]/);
+  let array = str.split(/[%\*\+\/\u02C6]/);
   console.log(array);
   if (array.length === 3) {
     totalOngoing.textContent = "Error";
@@ -39,7 +40,7 @@ function numberClicked(e) {
 function compute() {
   let str = totalOngoing.textContent;
   console.log(str);
-  let array = str.split(/[\*\+\x2D\/\u02C6]/);
+  let array = str.split(/[%\*\+\/\u02C6]/);
   if (array[0] === "" || array[0] === "Error") {
     totalOngoing.textContent = "Error";
     return;
@@ -47,20 +48,22 @@ function compute() {
 
   if (str.includes("+")) {
     addition();
-  } else if (str.includes("-")) {
-    subtraction();
-  } else if (str.includes("*")) {
+  }  else if (str.includes("*")) {
     multiplication();
   } else if (str.includes("/")) {
     division();
   } else if (str.includes("ˆ")) {
     calculateExponent();
-  }
+  } else if (str.includes("%")) {
+    calculateRemainder();
+  } else if (str.includes("-")) {
+    subtraction();
+}
 }
 
 function addition() {
   let str = totalOngoing.textContent;
-  let array = str.split(/[\*\+\x2D\/\u02C6]/);
+  let array = str.split(/[\*\+\/\u02C6]/);
   console.table(array);
   let sum = 0;
 
@@ -75,11 +78,14 @@ function addition() {
 
 function subtraction() {
   let str = totalOngoing.textContent;
-  let array = str.split(/[\*\+\x2D\/\u02C6]/);
+  let array = str.split("-");
+  console.table(array);
   let sum = 0;
 
   for (let i = 0; i < array.length; i++) {
     sum -= parseFloat(array[i]);
+    console.log(sum);
+    console.log(array[0]);
     sum = Math.round(sum * 1000) / 1000;
     total.textContent = sum + array[0] * 2;
   }
@@ -88,7 +94,7 @@ function subtraction() {
 
 function multiplication() {
   let str = totalOngoing.textContent;
-  let array = str.split(/[\*\+\x2D\/\u02C6]/);
+  let array = str.split(/[\*\+\/\u02C6]/);
   let sum = array[0];
 
   for (let i = 1; i < array.length; i++) {
@@ -101,7 +107,7 @@ function multiplication() {
 
 function division() {
   let str = totalOngoing.textContent;
-  let array = str.split(/[\*\+\x2D\/\u02C6]/);
+  let array = str.split(/[\*\+\/\u02C6]/);
   let sum = array[0];
 
   for (let i = 1; i < array.length; i++) {
@@ -114,8 +120,16 @@ function division() {
 
 function calculateExponent() {
   let str = totalOngoing.textContent;
-  let array = str.split(/[\*\+\x2D\/\u02C6]/);
+  let array = str.split(/[\*\+\/\u02C6]/);
   let sum = array[0] ** array[1];
+  total.textContent = sum;
+  totalOngoing.textContent = total.textContent;
+}
+
+function calculateRemainder() {
+  let str = totalOngoing.textContent;
+  let array = str.split(/[%\*\+\/\u02C6]/);
+  let sum = array[0] % array[1];
   total.textContent = sum;
   totalOngoing.textContent = total.textContent;
 }
@@ -133,3 +147,4 @@ function deleteAll() {
   total.textContent = 0;
   array = [];
 }
+
