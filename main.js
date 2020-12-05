@@ -27,13 +27,25 @@ function numberClicked(e) {
   console.log(e);
   num = e.target.textContent;
   totalOngoing.textContent += num;
+  let str = totalOngoing.textContent;
   
+  let array = str.split(/[\*\+\x2D\/]/);
+  if (array.length === 3) {
+    totalOngoing.textContent = "Error";
+    return;
+  }
   
 }
 
-function compute(e) {
+function compute() {
   let str = totalOngoing.textContent;
-
+  console.log(str);
+  let array = str.split(/[\*\+\x2D\/]/);
+  if (array[0] === "" || array[0] === "Error") {
+    totalOngoing.textContent = "Error";
+    return;
+  }
+  
   if (str.includes("+")) {
     addition();
   } else if (str.includes("-")) {
@@ -48,6 +60,7 @@ function compute(e) {
 function addition() {
   let str = totalOngoing.textContent;
   let array = str.split(/[\*\+\x2D\/]/);
+  console.table(array);
   let sum = 0;
 
   for (let i = 0; i < array.length; i++) {
@@ -55,6 +68,7 @@ function addition() {
     sum = Math.round(sum*1000) /1000;
     total.textContent = sum;
   }
+  console.log(sum);
   totalOngoing.textContent = total.textContent;
 }
 
