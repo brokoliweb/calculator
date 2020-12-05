@@ -1,5 +1,3 @@
-
-
 const totalOngoing = document.querySelector(".total-ongoing");
 const total = document.querySelector(".total");
 const exponent = document.querySelector(".exponent");
@@ -12,7 +10,6 @@ const clearAll = document.getElementById("clear-all");
 
 const backspace = document.getElementById("backspace");
 
-
 number.forEach((element) => {
   element.addEventListener("click", numberClicked);
 });
@@ -23,21 +20,20 @@ operator.forEach((element) => {
 equal.addEventListener("click", compute);
 clearAll.addEventListener("click", deleteAll);
 exponent.addEventListener("click", numberClicked);
-
+backspace.addEventListener("click", deleteLast);
 
 function numberClicked(e) {
   console.log(e);
   num = e.target.textContent;
   totalOngoing.textContent += num;
   let str = totalOngoing.textContent;
-  
+
   let array = str.split(/[\*\+\x2D\/\u02C6]/);
   console.log(array);
   if (array.length === 3) {
     totalOngoing.textContent = "Error";
     return;
   }
-  
 }
 
 function compute() {
@@ -48,7 +44,7 @@ function compute() {
     totalOngoing.textContent = "Error";
     return;
   }
-  
+
   if (str.includes("+")) {
     addition();
   } else if (str.includes("-")) {
@@ -70,7 +66,7 @@ function addition() {
 
   for (let i = 0; i < array.length; i++) {
     sum += parseFloat(array[i]);
-    sum = Math.round(sum*1000) /1000;
+    sum = Math.round(sum * 1000) / 1000;
     total.textContent = sum;
   }
   console.log(sum);
@@ -84,7 +80,7 @@ function subtraction() {
 
   for (let i = 0; i < array.length; i++) {
     sum -= parseFloat(array[i]);
-    sum = Math.round(sum*1000) /1000;
+    sum = Math.round(sum * 1000) / 1000;
     total.textContent = sum + array[0] * 2;
   }
   totalOngoing.textContent = total.textContent;
@@ -97,10 +93,10 @@ function multiplication() {
 
   for (let i = 1; i < array.length; i++) {
     sum *= parseFloat(array[i]);
-    sum = Math.round(sum*1000) /1000;
+    sum = Math.round(sum * 1000) / 1000;
     total.textContent = sum;
   }
-  totalOngoing.textContent = total.textContent
+  totalOngoing.textContent = total.textContent;
 }
 
 function division() {
@@ -110,19 +106,26 @@ function division() {
 
   for (let i = 1; i < array.length; i++) {
     sum /= parseFloat(array[i]);
-    sum = Math.round(sum*1000) /1000;
+    sum = Math.round(sum * 1000) / 1000;
     total.textContent = sum;
   }
-  totalOngoing.textContent = total.textContent
+  totalOngoing.textContent = total.textContent;
 }
 
 function calculateExponent() {
-  
   let str = totalOngoing.textContent;
   let array = str.split(/[\*\+\x2D\/\u02C6]/);
-  let sum = array[0]**array[1];
+  let sum = array[0] ** array[1];
   total.textContent = sum;
-  totalOngoing.textContent = total.textContent
+  totalOngoing.textContent = total.textContent;
+}
+
+function deleteLast() {
+  let str = totalOngoing.textContent;
+
+  str = str.substring(0, str.length - 1);
+
+  totalOngoing.textContent = str;
 }
 
 function deleteAll() {

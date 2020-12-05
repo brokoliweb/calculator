@@ -33,6 +33,7 @@
     max-width: 40vw;
     
     border: .2em solid black;
+    border-top: none;
     
     
 }
@@ -46,7 +47,7 @@
 .keypad {
     line-height: 8vh;
     font-size: 1.5em;
-    border: 1px solid blue;
+    border: 1px solid black;
     text-align: center;
     background: red;
     color: white;
