@@ -5,7 +5,7 @@
 
 #container {
     
-    width: 72vw;
+    width: 40vw;
     
     margin: auto;
     
@@ -13,13 +13,13 @@
 }
 
 #total-container {
-    width: 72vw;
+    width: 40vw;
     
     display: grid;
     grid-template-rows: 1fr 1fr;
     justify-content: end;
     
-    border: 10px solid black;
+    border: .2em solid black;
 }
 
 .total, .total-ongoing {
@@ -30,9 +30,9 @@
 
 #numbers-container {
     
-    max-width: 72vw;
+    max-width: 40vw;
     
-    border: 10px solid black;
+    border: .2em solid black;
     
     
 }
@@ -40,7 +40,7 @@
 .row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 1em;
+    grid-gap: .2em;
 }
 
 .numbers {
@@ -50,6 +50,10 @@
     text-align: center;
     background: red;
     color: white;
+}
+
+p {
+    margin: .2em;
 }
 
 .numbers:hover {
