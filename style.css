@@ -28,7 +28,7 @@
 
 
 
-#numbers-container {
+#keypad-container {
     
     max-width: 40vw;
     
@@ -43,7 +43,7 @@
     grid-gap: .2em;
 }
 
-.numbers {
+.keypad {
     line-height: 8vh;
     font-size: 1.5em;
     border: 1px solid blue;
@@ -56,7 +56,7 @@ p {
     margin: .2em;
 }
 
-.numbers:hover {
+.keypad:hover {
     cursor: pointer;
 }
 
