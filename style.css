@@ -1,63 +1,172 @@
 * {
-    box-sizing: border-box;
-    
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 1.6em;
+  font-family: monospace;
 }
 
 #container {
-    
-    width: 40vw;
-    
-    margin: auto;
-    
-    
+  width: 80vw;
+
+  margin: auto;
 }
 
 #total-container {
-    width: 40vw;
-    
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    justify-content: end;
-    
-    border: .2em solid black;
+  width: 80vw;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: end;
+
+  border: 0.2em solid black;
+  margin-top: 5vh;
 }
 
-.total, .total-ongoing {
-    margin-right: 1em;
+.total,
+.total-ongoing {
+  margin-right: 1em;
 }
 
-
+.total {
+  font-weight: bold;
+  font-size: 1.5em;
+  justify-self: end;
+}
 
 #keypad-container {
-    
-    max-width: 40vw;
-    
-    border: .2em solid black;
-    border-top: none;
-    
-    
+  max-width: 80vw;
+
+  border: 0.2em solid black;
+  border-top: none;
 }
 
 .row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: .2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 0.2em;
 }
 
 .keypad {
-    line-height: 8vh;
-    font-size: 1.5em;
-    border: 1px solid black;
-    text-align: center;
-    background: red;
-    color: white;
+  line-height: 8vh;
+  font-size: 1.5em;
+  border: 2px solid black;
+  text-align: center;
+  background: #DB2318;
+  color: white;
 }
 
 p {
-    margin: .2em;
+  margin: 0.2em;
 }
 
 .keypad:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
+footer {
+  width: 60vh;
+  margin: 2em auto;
+}
+
+.footer-wrapper {
+  display: flex;
+  margin-top: 10px;
+  background: #206df6;
+  justify-content: space-between;
+  padding: 0.5em;
+}
+
+#git-profile {
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+  margin: 1em;
+}
+
+#git-profile:hover {
+  background: yellow;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: yellow;
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 750px) {
+  #container {
+    width: 45vw;
+    margin: auto;
+  }
+
+  #total-container {
+    width: 45vw;
+  }
+
+  #keypad-container {
+    max-width: 45vw;
+  }
+  footer {
+    width: 45vw;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  #container {
+    width: 50vw;
+    margin: auto;
+  }
+
+  #total-container {
+    width: 50vw;
+  }
+
+  #keypad-container {
+    max-width: 50vw;
+  }
+
+  .keypad {
+    line-height: 9vh;
+  }
+
+  footer {
+    width: 50vw;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #container {
+    width: 30vw;
+    margin: auto;
+  }
+
+  #total-container {
+    width: 30vw;
+  }
+
+  #keypad-container {
+    max-width: 30vw;
+  }
+
+  .keypad {
+    line-height: 10vh;
+  }
+
+  footer {
+    width: 30vw;
+    height: auto;
+  }
+}
