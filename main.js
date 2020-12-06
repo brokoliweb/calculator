@@ -24,16 +24,23 @@ backspace.addEventListener("click", deleteLast);
 remainder.addEventListener("click", numberClicked);
 
 function numberClicked(e) {
-  console.log(e);
   num = e.target.textContent;
   totalOngoing.textContent += num;
   let str = totalOngoing.textContent;
 
   let array = str.split(/[%\*\+\/\u02C6]/);
-  console.log(array);
-  console.log(str.length);
-  console.log(array.includes("-"));
-  if (array.length === 3 || (array.includes("-") && str.length > 4)) {
+  let array2 = str.split(/[%\*\+\x2D\/\u02C6]/);
+  let array4 = array2.filter((e) => {
+    return e !== "";
+  });
+  let op = ["+", "-", "/", "*", "%", "ˆ"];
+
+  if (
+    array.length === 3 ||
+    (array2[0] === "" && array2.length > 4) ||
+    (array2[0] !== "" && array2.length > 3) ||
+    (array4.length === 2 && op.includes(str[str.length - 1]))
+  ) {
     totalOngoing.textContent = "Error";
     return;
   }
@@ -41,7 +48,7 @@ function numberClicked(e) {
 
 function compute() {
   let str = totalOngoing.textContent;
-  console.log(str);
+
   let array = str.split(/[%\*\+\/\u02C6]/);
   if (array[0] === "" || array[0] === "Error") {
     totalOngoing.textContent = "Error";
@@ -50,7 +57,7 @@ function compute() {
 
   if (str.includes("+")) {
     addition();
-  }  else if (str.includes("*")) {
+  } else if (str.includes("*")) {
     multiplication();
   } else if (str.includes("/")) {
     division();
@@ -60,13 +67,13 @@ function compute() {
     calculateRemainder();
   } else if (str.includes("-")) {
     subtraction();
-}
+  }
 }
 
 function addition() {
   let str = totalOngoing.textContent;
   let array = str.split(/[\*\+\/\u02C6]/);
-  console.table(array);
+
   let sum = 0;
 
   for (let i = 0; i < array.length; i++) {
@@ -74,28 +81,25 @@ function addition() {
     sum = Math.round(sum * 1000) / 1000;
     total.textContent = sum;
   }
-  console.log(sum);
+
   totalOngoing.textContent = total.textContent;
 }
 
 function subtraction() {
   let str = totalOngoing.textContent;
   let array = str.split("-");
-  console.table(array);
+
   let sum = 0;
 
   for (let i = 0; i < array.length; i++) {
     sum -= parseFloat(array[i]);
-    console.log(sum);
-    console.log(array[0]);
 
     if (array[0] === "") {
-      total.textContent =  - array[1] - array[2];
-    }  else {
+      total.textContent = -array[1] - array[2];
+    } else {
       sum = Math.round(sum * 1000) / 1000;
       total.textContent = sum + array[0] * 2;
     }
-    
   }
   totalOngoing.textContent = total.textContent;
 }
@@ -155,4 +159,3 @@ function deleteAll() {
   total.textContent = 0;
   array = [];
 }
-
