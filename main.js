@@ -98,7 +98,7 @@ function subtraction() {
       total.textContent = -array[1] - array[2];
     } else {
       sum = Math.round(sum * 1000) / 1000;
-      total.textContent = sum + array[0] * 2;
+      total.textContent = Math.round((sum + array[0] * 2) *1000) /1000;
     }
   }
   totalOngoing.textContent = total.textContent;
