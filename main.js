@@ -134,6 +134,7 @@ function calculateExponent() {
   let str = totalOngoing.textContent;
   let array = str.split(/[\*\+\/\u02C6]/);
   let sum = array[0] ** array[1];
+  sum = Math.round(sum * 1000) / 1000;
   total.textContent = sum;
   totalOngoing.textContent = total.textContent;
 }
@@ -142,6 +143,7 @@ function calculateRemainder() {
   let str = totalOngoing.textContent;
   let array = str.split(/[%\*\+\/\u02C6]/);
   let sum = array[0] % array[1];
+  sum = Math.round(sum * 1000) / 1000;
   total.textContent = sum;
   totalOngoing.textContent = total.textContent;
 }
